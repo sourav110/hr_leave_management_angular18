@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { MasterService } from '../../services/master.service';
 
 @Component({
   selector: 'app-layout',
@@ -10,16 +11,8 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 export class LayoutComponent {
 
   router = inject(Router);
-
-  loggedUserData  : any;
-
-  constructor() {
-    const storageData = sessionStorage.getItem("leaveAppUser");
-    if(storageData) {
-      debugger
-      this.loggedUserData = JSON.parse(storageData);
-    }
-  }
+  masterService = inject(MasterService);
+  
 
   onLogOff() {
     sessionStorage.removeItem("leaveAppUser");

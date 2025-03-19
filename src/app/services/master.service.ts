@@ -10,7 +10,15 @@ export class MasterService {
 
   baseUrl: string = "https://projectapi.gerasim.in/api/EmployeeManagement/";
 
-  constructor(private http: HttpClient) { }
+  loggedUserData  : any;
+
+  constructor(private http: HttpClient) { 
+    const storageData = sessionStorage.getItem("leaveAppUser");
+    if(storageData) {
+      debugger
+      this.loggedUserData = JSON.parse(storageData);
+    }
+  }
 
   getParentDepartmentList(): Observable<IApiResponse> {
     return this.http.get<IApiResponse>(this.baseUrl + "GetParentDepartment");

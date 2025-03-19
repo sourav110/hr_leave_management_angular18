@@ -30,7 +30,7 @@
             <!-- Right-aligned section: User name and Log off button -->
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item d-flex align-items-center">
-                    <span class="navbar-text me-2 text-white">Welcome, {{loggedUserData.employeeName}}</span>
+                    <span class="navbar-text me-2 text-white">Welcome, {{masterService.loggedUserData.employeeName}}</span>
                     <button class="btn btn-warning btn-sm" type="button" (click)="onLogOff()">Log off</button>
                 </li>
             </ul>
