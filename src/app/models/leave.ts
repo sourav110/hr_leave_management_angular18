@@ -37,3 +37,13 @@ export class Employee {
     parentDeptId: number
     departmentName: string
   }
+
+  export interface IEarnedLeave {
+    earnedLeaveId: number
+    employeeId: number
+    totalEarnedLeaves: number
+    totalSickEarnedLeaves: number
+    lastUpdatedDate: string
+    employeeName: string
+  }
+  

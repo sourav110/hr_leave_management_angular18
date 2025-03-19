@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Employee, IApiResponse } from '../models/leave';
+import { Employee, IApiResponse, IEarnedLeave } from '../models/leave';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,7 @@ export class MasterService {
     }
   }
 
+  //#region Employee
   getParentDepartmentList(): Observable<IApiResponse> {
     return this.http.get<IApiResponse>(this.baseUrl + "GetParentDepartment");
   }
@@ -47,6 +48,12 @@ export class MasterService {
   getEmployeeList(): Observable<Employee[]> {
     return this.http.get<Employee[]>(this.baseUrl + "GetAllEmployees");
   }
+  //#endregion
   
+  //#region Earned Leave
+  getAllEarnedLeaves(): Observable<IApiResponse> {
+    return this.http.get<IApiResponse>(this.baseUrl + "GetAllEarnedLeaves");
+  }
+  //#endregion
 }
 
