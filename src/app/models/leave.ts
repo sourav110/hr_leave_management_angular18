@@ -46,4 +46,23 @@ export class Employee {
     lastUpdatedDate: string
     employeeName: string
   }
+
+  export interface ILeaveRequest {
+    leaveId: number
+    employeeId: number
+    leaveTypeId: number
+    startDate: string
+    endDate: string
+    status: string
+    reason: string
+    requestDate: string
+    employeeName: string
+    contactNo: string
+    typeName: string
+  }
+  
+  export interface ILeaveType {
+    leaveTypeId: number
+    typeName: string
+  }
   

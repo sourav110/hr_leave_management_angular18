@@ -55,5 +55,11 @@ export class MasterService {
     return this.http.get<IApiResponse>(this.baseUrl + "GetAllEarnedLeaves");
   }
   //#endregion
+
+   //#region Leave Request
+   getLeaveTypes(): Observable<IApiResponse> {
+    return this.http.get<IApiResponse>(this.baseUrl + "GetLeaveTypes");
+  }
+  //#endregion
 }
 
