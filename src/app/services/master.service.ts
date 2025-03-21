@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Employee, IApiResponse, IEarnedLeave } from '../models/leave';
+import { Employee, IApiResponse, IEarnedLeave, ILeaveRequest } from '../models/leave';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +10,11 @@ export class MasterService {
 
   baseUrl: string = "https://projectapi.gerasim.in/api/EmployeeManagement/";
 
-  loggedUserData  : any;
+  loggedUserData: any;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     const storageData = sessionStorage.getItem("leaveAppUser");
-    if(storageData) {
+    if (storageData) {
       debugger
       this.loggedUserData = JSON.parse(storageData);
     }
@@ -34,31 +34,43 @@ export class MasterService {
   }
 
   saveEmployee(obj: Employee): Observable<Employee> {
-    return this.http.post<Employee>(this.baseUrl + "CreateEmployee", obj); 
+    return this.http.post<Employee>(this.baseUrl + "CreateEmployee", obj);
   }
 
   updateEmployee(empId: number, obj: Employee): Observable<Employee> {
-    return this.http.post<Employee>(this.baseUrl + "UpdateEmployee/" + empId, obj); 
+    return this.http.post<Employee>(this.baseUrl + "UpdateEmployee/" + empId, obj);
   }
 
   deleteEmployee(empId: number): Observable<Employee> {
-    return this.http.delete<Employee>(this.baseUrl + "DeleteEmployee/" + empId); 
+    return this.http.delete<Employee>(this.baseUrl + "DeleteEmployee/" + empId);
   }
 
   getEmployeeList(): Observable<Employee[]> {
     return this.http.get<Employee[]>(this.baseUrl + "GetAllEmployees");
   }
   //#endregion
-  
+
   //#region Earned Leave
   getAllEarnedLeaves(): Observable<IApiResponse> {
     return this.http.get<IApiResponse>(this.baseUrl + "GetAllEarnedLeaves");
   }
   //#endregion
 
-   //#region Leave Request
-   getLeaveTypes(): Observable<IApiResponse> {
+  //#region Leave Request
+  getLeaveTypes(): Observable<IApiResponse> {
     return this.http.get<IApiResponse>(this.baseUrl + "GetLeaveTypes");
+  }
+
+  getAllLeaveRequest(): Observable<IApiResponse> {
+    return this.http.get<IApiResponse>(this.baseUrl + "GetAllLeaveRequest");
+  }
+
+  getAllLeaveRequestByEmpId(empId: number): Observable<IApiResponse> {
+    return this.http.get<IApiResponse>(this.baseUrl + "GetAllLeaveRequestByEmpId?id=" + empId);
+  } 
+
+  createNewLeaveRequest(obj: ILeaveRequest): Observable<IApiResponse> {
+    return this.http.post<IApiResponse>(this.baseUrl + "CreateNewLeaveRequest", obj);
   }
   //#endregion
 }
